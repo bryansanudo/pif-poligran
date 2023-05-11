@@ -37,7 +37,7 @@ const HeaderMobile = ({ activeLink, user, labelEmail, logout }) => {
           <li className="flex justify-between items-center">
             <Link to="/">
               <h2>
-                Dealer<span className="text-primary">app</span>
+                My Money<span className="text-primary">app</span>
               </h2>
             </Link>
           </li>
