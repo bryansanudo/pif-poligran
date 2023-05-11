@@ -29,11 +29,11 @@ const HeaderMobile = ({ activeLink, user, labelEmail, logout }) => {
         onClick={mostarMenu}
         className={
           showMenu
-            ? "z-40 flex flex-col p-3 fixed inset-0 right-1/3 bg-black/40 backdrop-blur-xl gap-8 "
+            ? "z-40 flex flex-col p-3 fixed inset-0 right-1/3 bg-black/40 backdrop-blur-xl gap-20 "
             : "hidden"
         }
       >
-        <ul className="flex flex-col gap-6   justify-center">
+        <ul className="flex flex-col gap-4   justify-center">
           <li className="flex justify-between items-center">
             <Link to="/">
               <h2>
@@ -43,12 +43,12 @@ const HeaderMobile = ({ activeLink, user, labelEmail, logout }) => {
           </li>
           <li className="hover:text-primary  duration-400">
             <NavLink className={activeLink} to="/">
-              Home
+              Inicio
             </NavLink>
           </li>
           <li className="hover:text-primary  duration-400">
             <NavLink className={activeLink} to="/contact">
-              Contact
+              Contacto
             </NavLink>
           </li>
           <li
@@ -61,14 +61,14 @@ const HeaderMobile = ({ activeLink, user, labelEmail, logout }) => {
             </NavLink>
           </li>
         </ul>
-        <ul className="flex flex-col  justify-center ">
+        <ul className="flex flex-col gap-4  justify-center ">
           <li
             className={`hover:text-primary  duration-400 ${
               user ? "hidden" : ""
             }`}
           >
             <NavLink className={activeLink} to="/login">
-              Login
+              Iniciar Sesion
             </NavLink>
           </li>
           <li
@@ -77,7 +77,7 @@ const HeaderMobile = ({ activeLink, user, labelEmail, logout }) => {
             }`}
           >
             <NavLink className={activeLink} to="/register">
-              Register
+              Registrate
             </NavLink>
           </li>
           <li

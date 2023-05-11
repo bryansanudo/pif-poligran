@@ -9,12 +9,12 @@ const HeaderDesktop = ({ activeLink, user, labelEmail, logout }) => {
         <ul className="flex gap-6  items-center justify-center">
           <li className="hover:text-primary hover:scale-105 duration-400">
             <NavLink className={activeLink} to="/">
-              Home
+              Inicio
             </NavLink>
           </li>
           <li className="hover:text-primary hover:scale-105 duration-400">
             <NavLink className={activeLink} to="/contact">
-              Contact
+              Contacto
             </NavLink>
           </li>
           <li
@@ -34,7 +34,7 @@ const HeaderDesktop = ({ activeLink, user, labelEmail, logout }) => {
             } `}
           >
             <NavLink className={activeLink} to="/login">
-              Login
+              Iniciar Sesion
             </NavLink>
           </li>
           <li
@@ -43,7 +43,7 @@ const HeaderDesktop = ({ activeLink, user, labelEmail, logout }) => {
             } `}
           >
             <NavLink className={activeLink} to="/register">
-              Register
+              Registrate
             </NavLink>
           </li>
 

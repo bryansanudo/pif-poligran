@@ -3,7 +3,7 @@ import Register from "@/components/Register";
 import Login from "@/components/Login";
 import Home from "@/components/Home";
 import Contact from "@/components/Contact";
-import UserProfile from "@/components/UserProfile";
+import UserProfile from "@/components/userProfile/UserProfile";
 import Spents from "@/components/spents/Spents";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";

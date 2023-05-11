@@ -45,47 +45,34 @@ const Contact = () => {
 
           <div className="p-8 text-left md:w-[500px] w-[300px]">
             <form action="" method="POST">
-              <div className="flex flex-col gap-2 w-full ">
-                <div className="flex flex-col">
-                  <label className="capitalize text-sm py-2 font-extralight">
-                    nombre
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    className="border-2 rounded-lg p-3 flex focus:outline-none border-gray-400 dark:bg-gray-900 dark:text-white"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label className="capitalize text-sm py-2 font-extralight">
-                    teléfono
-                  </label>
-                  <input
-                    type="text"
-                    name="phone"
-                    className="border-2 rounded-lg p-3 flex focus:outline-none border-gray-400 dark:bg-gray-900 dark:text-white"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label className="capitalize text-sm py-2 font-extralight">
-                    correo
-                  </label>
-                  <input
-                    type="text"
-                    name="email"
-                    className="border-2 rounded-lg p-3 flex focus:outline-none border-gray-400 dark:bg-gray-900 dark:text-white"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label className="capitalize text-sm py-2 font-extralight">
-                    mensaje
-                  </label>
-                  <textarea
-                    name="message"
-                    rows="4"
-                    className="border-2 rounded-lg p-3 flex focus:outline-none border-gray-400 dark:bg-gray-900 dark:text-white resize-none"
-                  ></textarea>
-                </div>
+              <div className="flex flex-col gap-4 w-full ">
+                <input
+                  type="text"
+                  name="name"
+                  className="input input-primary"
+                  placeholder="Nombre"
+                />
+
+                <input
+                  type="text"
+                  name="phone"
+                  className="input input-primary"
+                  placeholder="Telefono"
+                />
+
+                <input
+                  type="text"
+                  name="email"
+                  className="input input-primary"
+                  placeholder="Correo"
+                />
+
+                <textarea
+                  name="message"
+                  rows="4"
+                  className="textarea textarea-primary"
+                  placeholder="Mensaje"
+                />
               </div>
 
               <div className="flex items-center justify-center">

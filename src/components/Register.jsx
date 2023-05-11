@@ -19,6 +19,7 @@ const Register = () => {
     e.preventDefault();
     setIsLoading(true);
     if (password !== cPassword) {
+      setIsLoading(false);
       toast.error("Las contraseñas no coiciden");
       return;
     }

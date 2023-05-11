@@ -4,6 +4,7 @@ import PostSpent from "@/components/spents/PostSpent";
 import { db } from "@/configFirebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import Loader from "@/components/Loader";
+import Section from "@/components/common/Section";
 const Spents = ({ labelEmail }) => {
   const [arrayTareas, setArrayTareas] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -51,20 +52,28 @@ const Spents = ({ labelEmail }) => {
 
   return (
     <>
-      {isLoading && <Loader />}
-      <PostSpent
-        arrayTareas={arrayTareas}
-        setArrayTareas={setArrayTareas}
-        labelEmail={labelEmail}
-      />
+      <Section
+        name="contacto"
+        title="Mis Gastos"
+        subtitle=" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat molestiae dolore dolor nam aliquam cumque repellendus necessitatibus maiores minima repellat quam reiciendis facere voluptates sed beatae, et omnis consectetur deserunt."
+      >
+        {isLoading && <Loader />}
+        <div className="container px-5 py-28 mx-auto flex flex-col items-center justify-between">
+          <PostSpent
+            arrayTareas={arrayTareas}
+            setArrayTareas={setArrayTareas}
+            labelEmail={labelEmail}
+          />
 
-      {arrayTareas ? (
-        <GetSpent
-          arrayTareas={arrayTareas}
-          setArrayTareas={setArrayTareas}
-          labelEmail={labelEmail}
-        />
-      ) : null}
+          {arrayTareas ? (
+            <GetSpent
+              arrayTareas={arrayTareas}
+              setArrayTareas={setArrayTareas}
+              labelEmail={labelEmail}
+            />
+          ) : null}
+        </div>
+      </Section>
     </>
   );
 };

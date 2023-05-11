@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { db } from "@/configFirebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
+import { MdLibraryAdd } from "react-icons/md";
 
 const PostSpent = ({ arrayTareas, labelEmail, setArrayTareas }) => {
   async function añadirTarea(e) {
@@ -28,23 +29,30 @@ const PostSpent = ({ arrayTareas, labelEmail, setArrayTareas }) => {
 
   return (
     <>
-      <div className="pt-40">
-        <form onSubmit={añadirTarea} className="flex gap-4">
-          <input
-            type="text"
-            className="input input-primary input-sm"
-            placeholder="titulo gasto"
-            id="titulo"
-          />
-          <input
-            type="text"
-            className="input input-primary input-sm"
-            placeholder="valor gasto"
-            id="valor"
-          />
-          <button type="submit">Agregar Gasto</button>
-        </form>
-      </div>
+      <form
+        onSubmit={añadirTarea}
+        className="mb-10 flex flex-col md:flex-row items-center gap-2"
+      >
+        <input
+          type="text"
+          className="input input-primary input-sm"
+          placeholder="Titulo Gasto"
+          id="titulo"
+        />
+        <input
+          type="text"
+          className="input input-primary input-sm"
+          placeholder="Valor Gasto"
+          id="valor"
+        />
+        <button
+          type="submit"
+          className="flex items-center justify-center gap-4 text-white bg-black  py-1 px-4  focus:outline-none  hover:scale-105 duration-300 rounded-md"
+        >
+          Agregar
+          <MdLibraryAdd />
+        </button>
+      </form>
     </>
   );
 };

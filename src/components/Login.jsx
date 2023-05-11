@@ -59,7 +59,7 @@ const Login = () => {
     <>
       {isLoading && <Loader />}
       <section
-        className={`flex flex-col w-full gap-8 lg:flex-row pt-28 md:px-20 px-4 ${
+        className={`flex flex-col w-full gap-8 lg:flex-row py-28 md:px-20 px-4 ${
           reset ? "hidden" : ""
         }`}
       >
@@ -79,13 +79,13 @@ const Login = () => {
             </h1>
             <input
               type="text"
-              placeholder="Email"
+              placeholder="Correo"
               className="input  input-primary  w-full"
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Contraseña"
               className="input  input-primary  w-full"
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -104,7 +104,7 @@ const Login = () => {
               className="btn btn-primary capitalize  gap-4 w-full"
             >
               <FcGoogle className="text-3xl" />
-              Ingresa con Google
+              Ingresar con Google
             </div>
           </form>
         </div>
