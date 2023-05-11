@@ -1,39 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { TbDoorExit } from "react-icons/tb";
 import { RiUserStarFill } from "react-icons/ri";
 
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "@/configFirebase";
-
-const HeaderDesktop = ({ activeLink }) => {
-  const [labelEmail, setLabelEmail] = useState("");
-  const [user, setUser] = useState(false);
-
-  const navigate = useNavigate();
-  const cerrarSesion = () => {
-    signOut(auth)
-      .then(() => {
-        console.log("cerro sesion exitosamente");
-        setUser(false);
-        navigate("/login");
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(true);
-        setLabelEmail(user.email);
-      } else {
-        setLabelEmail("");
-      }
-    });
-  }, []);
-
+const HeaderDesktop = ({ activeLink, user, labelEmail, logout }) => {
   return (
     <>
       <div className="hidden md:flex justify-between mx- gap-8">
@@ -95,7 +64,7 @@ const HeaderDesktop = ({ activeLink }) => {
               user ? "" : "hidden"
             } `}
           >
-            <NavLink onClick={cerrarSesion}>
+            <NavLink onClick={logout}>
               <div className="flex items-center justify-center gap-1">
                 Salir
                 <TbDoorExit className="text-3xl" />

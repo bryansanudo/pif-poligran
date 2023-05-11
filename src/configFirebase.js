@@ -1,14 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyArtRW1HaCXWYzTOMebv5lNgNcTBcmZHl4",
-  authDomain: "apppoligran.firebaseapp.com",
-  projectId: "apppoligran",
-  storageBucket: "apppoligran.appspot.com",
-  messagingSenderId: "414567357672",
-  appId: "1:414567357672:web:8ebff28a3c2c3ce4e6fd5d",
+  apiKey: "AIzaSyCHVNl_LZjUDFNawaEahvXr1X_vmiuhZE4",
+  authDomain: "bryansanudo-cba02.firebaseapp.com",
+  projectId: "bryansanudo-cba02",
+  storageBucket: "bryansanudo-cba02.appspot.com",
+  messagingSenderId: "263720986100",
+  appId: "1:263720986100:web:f9d3e067f4acd03fb7c5a1",
 };
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const db = getFirestore(app);

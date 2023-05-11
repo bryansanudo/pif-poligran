@@ -1,42 +1,13 @@
-import { useEffect, useState } from "react";
-
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 
 import { MdClose } from "react-icons/md";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { TbDoorExit } from "react-icons/tb";
 import { RiUserStarFill } from "react-icons/ri";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "@/configFirebase";
 
-const HeaderMobile = ({ activeLink }) => {
+const HeaderMobile = ({ activeLink, user, labelEmail, logout }) => {
   const [showMenu, setShowMenu] = useState(false);
-
-  const [labelEmail, setLabelEmail] = useState("");
-  const [user, setUser] = useState(false);
-  const navigate = useNavigate();
-  const cerrarSesion = () => {
-    signOut(auth)
-      .then(() => {
-        console.log("cerro sesion exitosamente");
-        setUser(false);
-        navigate("/login");
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(true);
-        setLabelEmail(user.email);
-      } else {
-        setLabelEmail("");
-      }
-    });
-  }, []);
 
   const mostarMenu = () => {
     setShowMenu(!showMenu);
@@ -58,7 +29,7 @@ const HeaderMobile = ({ activeLink }) => {
         onClick={mostarMenu}
         className={
           showMenu
-            ? "z-40 flex flex-col p-3 fixed inset-0 right-1/2 bg-black/40 backdrop-blur-xl gap-8 "
+            ? "z-40 flex flex-col p-3 fixed inset-0 right-1/3 bg-black/40 backdrop-blur-xl gap-8 "
             : "hidden"
         }
       >
@@ -122,7 +93,7 @@ const HeaderMobile = ({ activeLink }) => {
             </NavLink>
           </li>
           <li
-            onClick={cerrarSesion}
+            onClick={logout}
             className={`hover:text-primary hover:scale-105 duration-400 ${
               user ? "" : "hidden"
             } `}
