@@ -14,17 +14,16 @@ const HeaderMobile = ({ activeLink, user, labelEmail, logout }) => {
   };
   return (
     <>
-      <label className="absolute right-6 top-6 md:hidden swap swap-rotate">
-        <input type="checkbox" />
-        <HiOutlineMenuAlt3
-          className="text-5xl cursor-pointer swap-off"
-          onClick={mostarMenu}
-        />
-        <MdClose
-          className="text-5xl cursor-pointer swap-on"
-          onClick={mostarMenu}
-        />
-      </label>
+      <div className="absolute right-6 top-6 md:hidden ">
+        {showMenu ? (
+          <MdClose className="text-5xl cursor-pointer " onClick={mostarMenu} />
+        ) : (
+          <HiOutlineMenuAlt3
+            className="text-5xl cursor-pointer "
+            onClick={mostarMenu}
+          />
+        )}
+      </div>
       <div
         onClick={mostarMenu}
         className={
@@ -85,7 +84,7 @@ const HeaderMobile = ({ activeLink, user, labelEmail, logout }) => {
               user ? "" : "hidden"
             }`}
           >
-            <NavLink>
+            <NavLink to="/user-profile">
               <div className="flex items-center gap-1">
                 {labelEmail}
                 <RiUserStarFill className="text-3xl" />

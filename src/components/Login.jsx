@@ -103,7 +103,7 @@ const Login = () => {
               onClick={signInWithGoogle}
               className="btn btn-primary capitalize  gap-4 w-full"
             >
-              <FcGoogle className="text-3xl" />
+              <FcGoogle className="md:text-3xl text-lg" />
               Ingresar con Google
             </div>
           </form>
