@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { db } from "@/configFirebase";
 import { doc, updateDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 const PostSpent = ({ arrayTareas, labelEmail, setArrayTareas }) => {
   async function añadirTarea(e) {
     e.preventDefault();
+
     const titulo = e.target.titulo.value;
     const valor = e.target.valor.value;
     // crear nuevo array de tareas
@@ -18,29 +20,32 @@ const PostSpent = ({ arrayTareas, labelEmail, setArrayTareas }) => {
     updateDoc(docRef, { tareas: [...nvoArrayTareas] });
     // actualizar estdo
     setArrayTareas(nvoArrayTareas);
+    toast.success("Gasto Añadido con exito");
     //limpiar form
     e.target.titulo.value = "";
     e.target.valor.value = "";
   }
 
   return (
-    <div className="pt-40">
-      <form onSubmit={añadirTarea}>
-        <input
-          type="text"
-          className="input input-primary"
-          placeholder="titulo gasto"
-          id="titulo"
-        />
-        <input
-          type="text"
-          className="input input-primary"
-          placeholder="valor gasto"
-          id="valor"
-        />
-        <button type="submit">Agregar Gasto</button>
-      </form>
-    </div>
+    <>
+      <div className="pt-40">
+        <form onSubmit={añadirTarea} className="flex gap-4">
+          <input
+            type="text"
+            className="input input-primary input-sm"
+            placeholder="titulo gasto"
+            id="titulo"
+          />
+          <input
+            type="text"
+            className="input input-primary input-sm"
+            placeholder="valor gasto"
+            id="valor"
+          />
+          <button type="submit">Agregar Gasto</button>
+        </form>
+      </div>
+    </>
   );
 };
 

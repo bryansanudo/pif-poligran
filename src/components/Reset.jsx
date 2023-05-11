@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Reset = ({ setReset }) => {
   return (
     <>
-      <section className="flex flex-col w-full gap-8 lg:flex-row pt-20 md:px-20 px-4">
+      <section className="flex flex-col w-full gap-8 lg:flex-row pt-28 md:px-20 px-4">
         <div className="flex items-center justify-center lg:w-1/2 ">
           <img src="/forgot.png" className="w-[300px] lg:w-[600px] " />
         </div>

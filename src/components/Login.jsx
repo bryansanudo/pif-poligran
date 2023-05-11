@@ -8,12 +8,14 @@ import { auth } from "@/configFirebase";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
+import Loader from "@/components/Loader";
 
 import Reset from "@/components/Reset";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   //estado para mostar dinamicamente login o reset
   const [reset, setReset] = useState(false);
@@ -21,36 +23,43 @@ const Login = () => {
   const redirect = useNavigate();
   const loginUser = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
+        setIsLoading(false);
         toast.success("Inicio de sesion exitoso ");
         redirect("/spents");
       })
       .catch((error) => {
         toast.error(error.message);
+        setIsLoading(false);
       });
   };
 
   const provider = new GoogleAuthProvider();
   const signInWithGoogle = () => {
+    setIsLoading(true);
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
         console.log(user);
-        toast.success("login Successfully");
+        setIsLoading(false);
+        toast.success("Inicio de sesion exitoso");
         redirect("/spents");
       })
       .catch((error) => {
         toast.error(error.message);
+        setIsLoading(false);
       });
   };
 
   return (
     <>
+      {isLoading && <Loader />}
       <section
-        className={`flex flex-col w-full gap-8 lg:flex-row pt-20 md:px-20 px-4 ${
+        className={`flex flex-col w-full gap-8 lg:flex-row pt-28 md:px-20 px-4 ${
           reset ? "hidden" : ""
         }`}
       >

@@ -31,7 +31,7 @@ const Header = ({ user, setUser, labelEmail }) => {
           <div className="text-white w-[20%] text-lg">
             <Link to="/">
               <h2>
-                Dealer<span className="text-primary">App</span>
+                MyMoney<span className="text-primary">App</span>
               </h2>
             </Link>
           </div>

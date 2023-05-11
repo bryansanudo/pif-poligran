@@ -3,8 +3,10 @@ import GetSpent from "@/components/spents/GetSpent";
 import PostSpent from "@/components/spents/PostSpent";
 import { db } from "@/configFirebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import Loader from "@/components/Loader";
 const Spents = ({ labelEmail }) => {
   const [arrayTareas, setArrayTareas] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fakeData = [
     {
@@ -16,6 +18,7 @@ const Spents = ({ labelEmail }) => {
   //
 
   const buscarDocumentoOCrearDocumento = async (idDocumento) => {
+    setIsLoading(true);
     //crear referencia al documento
     const docRef = doc(db, "usuarios", idDocumento);
     //buscar documento
@@ -25,12 +28,14 @@ const Spents = ({ labelEmail }) => {
     if (consulta.exists()) {
       //si si existe
       const infoDocu = consulta.data();
+      setIsLoading(false);
       return infoDocu.tareas;
     } else {
       //si no existe
       await setDoc(docRef, { tareas: [...fakeData] });
       const consulta = await getDoc(docRef);
       const infoDocu = consulta.data();
+      setIsLoading(false);
       return infoDocu.tareas;
     }
   };
@@ -46,6 +51,7 @@ const Spents = ({ labelEmail }) => {
 
   return (
     <>
+      {isLoading && <Loader />}
       <PostSpent
         arrayTareas={arrayTareas}
         setArrayTareas={setArrayTareas}

@@ -4,17 +4,20 @@ import { auth } from "@/configFirebase";
 import { useNavigate } from "react-router-dom";
 import Reset from "@/components/Reset";
 import { toast } from "react-toastify";
+import Loader from "@/components/Loader";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cPassword, setCPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [reset, setReset] = useState(false);
 
   const redirect = useNavigate();
   const registrarUsuarioBD = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     if (password !== cPassword) {
       toast.error("Las contraseñas no coiciden");
       return;
@@ -23,18 +26,21 @@ const Register = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
+        setIsLoading(false);
         toast.success("Usuario Creado exitosamente ");
         redirect("/spents");
       })
       .catch((error) => {
         toast.error(error.message);
+        setIsLoading(false);
       });
   };
 
   return (
     <>
+      {isLoading && <Loader />}
       <section
-        className={`flex flex-col w-full gap-8 lg:flex-row pt-20 md:px-20 px-4 ${
+        className={`flex flex-col w-full gap-8 lg:flex-row pt-28 md:px-20 px-4 ${
           reset ? "hidden" : ""
         }`}
       >
