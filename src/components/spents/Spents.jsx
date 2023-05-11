@@ -6,13 +6,20 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 const Spents = ({ labelEmail }) => {
   const [arrayTareas, setArrayTareas] = useState(null);
 
-  const fakeData = [{ id: 1, titulo: "gaseosa", valor: "1500" }];
+  const fakeData = [
+    {
+      id: 1,
+      titulo: "(Este es un gasto de prueba)",
+      valor: "Ingresar solo el valor '5000'",
+    },
+  ];
+  //
 
   const buscarDocumentoOCrearDocumento = async (idDocumento) => {
     //crear referencia al documento
     const docRef = doc(db, "usuarios", idDocumento);
     //buscar documento
-    console.log("esta es la consulta");
+
     const consulta = await getDoc(docRef);
     //revissar si existe
     if (consulta.exists()) {

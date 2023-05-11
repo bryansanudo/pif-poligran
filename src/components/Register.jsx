@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/configFirebase";
-
+import { useNavigate } from "react-router-dom";
 import Reset from "@/components/Reset";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -11,31 +12,23 @@ const Register = () => {
 
   const [reset, setReset] = useState(false);
 
+  const redirect = useNavigate();
   const registrarUsuarioBD = (e) => {
     e.preventDefault();
     if (password !== cPassword) {
-      console.log("Password do not match");
+      toast.error("Las contraseñas no coiciden");
       return;
     }
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-
-        console.log("Inicio de sesion exitoso ", user);
+        console.log(user);
+        toast.success("Usuario Creado exitosamente ");
+        redirect("/spents");
       })
       .catch((error) => {
-        console.log(error.message);
+        toast.error(error.message);
       });
-  };
-
-  const capturarInputEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const capturarInputPassword = (e) => {
-    setPassword(e.target.value);
-  };
-  const capturarInputCPassword = (e) => {
-    setCPassword(e.target.value);
   };
 
   return (
@@ -60,19 +53,19 @@ const Register = () => {
               type="text"
               placeholder="Correo"
               className="input  input-primary  w-full"
-              onChange={capturarInputEmail}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="password"
               placeholder="Contraseña"
               className="input input-primary  w-full"
-              onChange={capturarInputPassword}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <input
               type="password"
               placeholder="Confrima Contraseña"
               className="input input-primary  w-full"
-              onChange={capturarInputCPassword}
+              onChange={(e) => setCPassword(e.target.value)}
             />
             <button
               className="btn btn-secondary capitalize w-full"

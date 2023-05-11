@@ -38,7 +38,7 @@ const PostSpent = ({ arrayTareas, labelEmail, setArrayTareas }) => {
           placeholder="valor gasto"
           id="valor"
         />
-        <button type="submit">Agregar Tarea</button>
+        <button type="submit">Agregar Gasto</button>
       </form>
     </div>
   );

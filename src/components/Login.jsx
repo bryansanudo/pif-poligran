@@ -1,7 +1,13 @@
 import React, { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "@/configFirebase";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { FcGoogle } from "react-icons/fc";
 
 import Reset from "@/components/Reset";
 
@@ -13,16 +19,31 @@ const Login = () => {
   const [reset, setReset] = useState(false);
 
   const redirect = useNavigate();
-  const iniciarSesion = (e) => {
+  const loginUser = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log("Inicio de sesion exitoso ", user);
+        console.log(user);
+        toast.success("Inicio de sesion exitoso ");
         redirect("/spents");
       })
       .catch((error) => {
-        console.log(error.message);
+        toast.error(error.message);
+      });
+  };
+
+  const provider = new GoogleAuthProvider();
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success("login Successfully");
+        redirect("/spents");
+      })
+      .catch((error) => {
+        toast.error(error.message);
       });
   };
 
@@ -40,26 +61,26 @@ const Login = () => {
         <div className="divider lg:divider-horizontal" />
 
         <div className="flex items-center justify-center lg:w-1/2">
-          <form className="flex flex-col gap-4 w-[300px] lg:w-[500px] items-center shadow-lg shadow-gray-500 rounded-xl p-6 ">
+          <form
+            onSubmit={loginUser}
+            className="flex flex-col gap-6 w-[300px] lg:w-[500px] items-center shadow-lg shadow-gray-500 rounded-xl p-8 mt-16 "
+          >
             <h1 className="w-full text-center font-bold text-2xl ">
-              Inicio de Sesion
+              Iniciar Sesion
             </h1>
             <input
               type="text"
-              placeholder="Correo"
+              placeholder="Email"
               className="input  input-primary  w-full"
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="password"
-              placeholder="Contraseña"
-              className="input input-primary  w-full"
+              placeholder="Password"
+              className="input  input-primary  w-full"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button
-              className="btn btn-secondary capitalize w-full"
-              onClick={iniciarSesion}
-            >
+            <button className="btn btn-secondary w-full capitalize">
               Ingresar
             </button>
             <div
@@ -67,6 +88,14 @@ const Login = () => {
               onClick={() => setReset(true)}
             >
               Cambiar Contraseña
+            </div>
+
+            <div
+              onClick={signInWithGoogle}
+              className="btn btn-primary capitalize  gap-4 w-full"
+            >
+              <FcGoogle className="text-3xl" />
+              Ingresa con Google
             </div>
           </form>
         </div>

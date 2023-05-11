@@ -23,10 +23,10 @@ const GetSpent = ({ arrayTareas, labelEmail, setArrayTareas }) => {
         {arrayTareas.map((objTask) => (
           <div key={objTask.id} className="flex gap-5">
             <div>{objTask.titulo}</div>
-            <div>{objTask.valor}</div>
+            <div>{objTask.valor} Pesos</div>
 
             <button onClick={() => eliminarTarea(objTask.id)}>
-              Eliminar Tarea
+              Eliminar Gasto
             </button>
           </div>
         ))}

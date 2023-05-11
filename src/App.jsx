@@ -9,6 +9,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/configFirebase";
 import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const [user, setUser] = useState(false);
@@ -30,6 +32,7 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
+        <ToastContainer position="bottom-center" />
         <Header user={user} setUser={setUser} labelEmail={labelEmail} />
         <Routes>
           <Route path="/" element={<Home />} />
